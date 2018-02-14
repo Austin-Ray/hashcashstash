@@ -8,40 +8,40 @@ import java.util.List;
 import java.util.Map;
 
 public class CurrencyStub {
-	private static Map<Long, Currency> wrecks = new HashMap<Long, Currency>();
+	private static Map<Long, Currency> coins = new HashMap<Long, Currency>();
 	private static Long idIndex = 3L;
 
-	//populate initial wrecks
+	//populate initial coins
 	static {
-		Currency a = new Currency(1L, "U869", "A very deep German UBoat", "FAIR", 200.0, 44.12, 138.44, 1994);
-		wrecks.put(1L, a);
-		Currency b = new Currency(2L, "Thistlegorm", "British merchant boat in the Red Sea", "GOOD", 80.0, 44.12, 138.44, 1994);
-		wrecks.put(2L, b);
-		Currency c = new Currency(3L, "S.S. Yongala", "A luxury passenger ship wrecked on the great barrier reef", "FAIR", 50.0, 44.12, 138.44, 1994);
-		wrecks.put(3L, c);
+		Currency a = new Currency(1L, "Bitcoin", "BTC", "FAIR", 200.0, 9312.69, 138.44, 1994);
+		coins.put(1L, a);
+		Currency b = new Currency(2L, "Ethereum", "ETH", "GOOD", 80.0, 911.81, 138.44, 1994);
+		coins.put(2L, b);
+		Currency c = new Currency(3L, "Ripple", "XRP", "FAIR", 50.0, 1.08, 138.44, 1994);
+		coins.put(3L, c);
 	}
 
 	public static List<Currency> list() {
-		return new ArrayList<Currency>(wrecks.values());
+		return new ArrayList<Currency>(coins.values());
 	}
 
-	public static Currency create(Currency wreck) {
+	public static Currency create(Currency coin) {
 		idIndex += idIndex;
-		wreck.setId(idIndex);
-		wrecks.put(idIndex, wreck);
-		return wreck;
+		coin.setId(idIndex);
+		coins.put(idIndex, coin);
+		return coin;
 	}
 
 	public static Currency get(Long id) {
-		return wrecks.get(id);
+		return coins.get(id);
 	}
 
-	public static Currency update(Long id, Currency wreck) {
-		wrecks.put(id, wreck);
-		return wreck;
+	public static Currency update(Long id, Currency coin) {
+		coins.put(id, coin);
+		return coin;
 	}
 
 	public static Currency delete(Long id) {
-		return wrecks.remove(id);
+		return coins.remove(id);
 	}
 }
