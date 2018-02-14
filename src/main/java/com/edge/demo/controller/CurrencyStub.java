@@ -13,11 +13,11 @@ public class CurrencyStub {
 
 	//populate initial coins
 	static {
-		Currency a = new Currency(1L, "Bitcoin", "BTC", "FAIR", 200.0, 9312.69, 138.44, 1994);
+		Currency a = new Currency(1L, "Bitcoin", "BTC", "FAIR", 9312.69, 138.44, 1994);
 		coins.put(1L, a);
-		Currency b = new Currency(2L, "Ethereum", "ETH", "GOOD", 80.0, 911.81, 138.44, 1994);
+		Currency b = new Currency(2L, "Ethereum", "ETH", "GOOD", 5.0, 138.44, 1994);
 		coins.put(2L, b);
-		Currency c = new Currency(3L, "Ripple", "XRP", "FAIR", 50.0, 1.08, 138.44, 1994);
+		Currency c = new Currency(3L, "Ripple", "XRP", "FAIR", 1.08, 138.44, 1994);
 		coins.put(3L, c);
 	}
 

@@ -5,21 +5,21 @@ public class Currency {
 	String name;
 	String description;
 	String condition;
-	double priceChange;
+	Double priceChange;
 	Double sodPrice;
 	Double eodPrice;
 	Integer yearDiscovered;
 
 	public Currency() { }
 
-	public Currency(Long id, String name, String description, String condition, Double priceChange, Double sodPrice, Double eodPrice, Integer yearDiscovered) {
+	public Currency(Long id, String name, String description, String condition, Double sodPrice, Double eodPrice, Integer yearDiscovered) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.condition = condition;
-		this.priceChange = eodPrice - sodPrice;
 		this.sodPrice = sodPrice;
 		this.eodPrice = eodPrice;
+		this.priceChange = this.eodPrice - this.sodPrice;
 		this.yearDiscovered = yearDiscovered;
 	}
 
@@ -59,7 +59,7 @@ public class Currency {
 		return priceChange;
 	}
 
-	public void setPriceChange(Integer priceChange) {
+	public void setPriceChange(Double priceChange) {
 		this.priceChange = priceChange;
 	}
 
