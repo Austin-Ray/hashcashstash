@@ -1,0 +1,18 @@
+<div class="container pad-top">
+  <a ui-sref="newCurrency" class="btn-primary btn-lg nodecoration">Add New Currency</a>
+  <table class="table currencytable">
+      <tr>
+          <td><h3>All Currencies</h3></td>
+          <td></td>
+      </tr>
+      <tr ng-repeat="currency in currencys">
+          <td>{{currency.name}}</td>
+          <td>{{currency.description}}</td>
+          <td>{{currency.yearDiscovered}}</td>
+          <td>
+              <a class="btn btn-primary" ui-sref="viewCurrency({id:currency.id})">View</a>
+              <a class="btn btn-danger"  ng-click="deleteCurrency(currency)">Delete</a>
+          </td>
+      </tr>
+  </table>
+</div>
