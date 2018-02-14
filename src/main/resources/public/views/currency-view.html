@@ -21,12 +21,16 @@
           <td>{{currency.yearDiscovered}}</td>
       </tr>
       <tr>
-          <td>Price Change</td>
-          <td>{{currency.depth}}</td>
+          <td>SOD Price </td>
+          <td>{{currency.sodPrice}}</td>
       </tr>
       <tr>
-          <td>SOD Price : Current Price</td>
-          <td>{{currency.latitude}}, {{currency.longitude}}</td>
+          <td>EOD Price </td>
+          <td>{{currency.eodPrice}}</td>
+      </tr>
+      <tr>
+          <td>Price Change</td>
+          <td>{{currency.eodPrice - currency.sodPrice}}</td>
       </tr>
   </table>
   <div>
