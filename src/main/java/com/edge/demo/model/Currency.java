@@ -1,26 +1,32 @@
 package com.edge.demo.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Currency {
+	//tells JPA that id is the auto-generated primary key
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
 	String name;
-	String description;
-	String condition;
-	Double priceChange;
+	String symbol;
+	String rank;
 	Double sodPrice;
-	Double eodPrice;
-	Integer yearDiscovered;
+	Double currentPrice;
+	String date_time;
 
 	public Currency() { }
 
-	public Currency(Long id, String name, String description, String condition, Double sodPrice, Double eodPrice, Integer yearDiscovered) {
-		this.id = id;
+	public Currency(String name, String symbol, String rank, Double sodPrice, Double currentPrice, String dateTime) {
 		this.name = name;
-		this.description = description;
-		this.condition = condition;
+		this.symbol = symbol;
+		this.rank = rank;
 		this.sodPrice = sodPrice;
-		this.eodPrice = eodPrice;
-		this.priceChange = this.eodPrice - this.sodPrice;
-		this.yearDiscovered = yearDiscovered;
+		this.currentPrice = currentPrice;
+		this.date_time = dateTime;
 	}
 
 	public Long getId() {
@@ -39,28 +45,24 @@ public class Currency {
 		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getSymbol() {
+		return symbol;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setSymbol(String symbol) {
+		this.symbol = symbol;
 	}
 
-	public String getCondition() {
-		return condition;
+	public String getRank() {
+		return rank;
 	}
 
-	public void setCondition(String condition) {
-		this.condition = condition;
+	public void setRank(String rank) {
+		this.rank = rank;
 	}
 
 	public Double getPriceChange() {
-		return priceChange;
-	}
-
-	public void setPriceChange(Double priceChange) {
-		this.priceChange = priceChange;
+		return currentPrice-sodPrice;
 	}
 
 	public Double getSodPrice() {
@@ -71,19 +73,19 @@ public class Currency {
 		this.sodPrice = sodPrice;
 	}
 
-	public Double getEodPrice() {
-		return eodPrice;
+	public Double getCurrentPrice() {
+		return currentPrice;
 	}
 
-	public void setEodPrice(Double eodPrice) {
-		this.eodPrice = eodPrice;
+	public void setCurrentPrice(Double currentPrice) {
+		this.currentPrice = currentPrice;
 	}
 
-	public Integer getYearDiscovered() {
-		return yearDiscovered;
+	public String getDate_time() {
+		return date_time;
 	}
 
-	public void setYearDiscovered(Integer yearDiscovered) {
-		this.yearDiscovered = yearDiscovered;
+	public void setDate_time(String date_time) {
+		this.date_time = date_time;
 	}
 }
