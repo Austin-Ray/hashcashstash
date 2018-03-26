@@ -33,7 +33,7 @@ public class CurrencyController {
         return currencyRepository.findOne(id);
     }
 
-    //grab the shipwreck with the incoming id from browser, find the existing one
+    //grab the currency with the incoming id from browser, find the existing one
     //with that id in the database, and update, save, and return updated currency
     @RequestMapping(value = "currencys/{id}", method = RequestMethod.PUT)
     public Currency update(@PathVariable Long id, @RequestBody Currency currency){

@@ -17,6 +17,14 @@ angular.module('navController', [])
 			{
 				name: 'Currencies',
 				url: '#/currencys'
-			}
+			},
+            {
+                name: 'FAQ',
+                url: '#/faq'
+            },
+            {
+                name: 'Account',
+                url: '#/account'
+            }
 		]
 	});
