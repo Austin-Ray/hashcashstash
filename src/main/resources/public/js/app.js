@@ -61,7 +61,15 @@
 	        url:'/currencys/:id/edit',
 	        templateUrl: viewsPrefix + 'currency-edit.html',
 	        controller:'CurrencyEditController'
-	    })
+	    }).state('faq',{
+            url:'/faq',
+            templateUrl: viewsPrefix + 'faq.html',
+            controller: 'CurrencyListController'
+        }).state('account',{
+            url:'/account',
+            templateUrl: viewsPrefix + 'account.html',
+            controller: 'CurrencyListController'
+        })
 	})
 	.directive('updateTitle', ['$rootScope', '$timeout',
 		function($rootScope, $timeout) {
