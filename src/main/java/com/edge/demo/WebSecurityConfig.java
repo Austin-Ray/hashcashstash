@@ -18,6 +18,7 @@ import java.util.Properties;
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -39,7 +40,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         final Properties users = new Properties();
         String adminPassword = passwordEncoder().encode("admin");
         users.put("admin", adminPassword + ",ROLE_ADMIN,enabled");
-        users.put("qubuni@qub.ac.uk", "password,ROLE_USER,enabled"); //add whatever other user you need
+        users.put("qubuni@qub.ac.uk", "password,ROLE_USER,enabled");
+        users.put("kelsey", adminPassword+",ROLE_ADMIN,enabled");
+        users.put("austin", adminPassword+",ROLE_ADMIN,enabled");
+        users.put("sam", adminPassword+",ROLE_ADMIN,enabled");
+        users.put("michael", adminPassword+",ROLE_ADMIN,enabled");
+        users.put("user", adminPassword+",ROLE_USER,enabled");
+        //add whatever other user you need
+
+
+//add whatever other user you need
+
+        //add whatever other user you need
         return new InMemoryUserDetailsManager(users);
     }
 
