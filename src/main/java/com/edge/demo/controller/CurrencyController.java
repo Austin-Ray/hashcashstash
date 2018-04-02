@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+/**
+ * Created by kelseyedge on 2/14/18.
+ * This class manages the CRUD operations of the Currency Repository
+ */
 
 @RestController
 @RequestMapping("api/v1/")

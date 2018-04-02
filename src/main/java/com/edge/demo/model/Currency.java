@@ -4,6 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+/**
+ * Created by kelseyedge on 2/14/18.
+ * This class connects the Currency model as a Spring JPA entity (which connects it to the database table)
+ */
 
 @Entity
 public class Currency {

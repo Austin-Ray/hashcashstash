@@ -14,7 +14,7 @@
 //
 ///**
 // * Created by kelseyedge
-// * This class is responsible for mapping URLs vis HTTP status code to views in the templates folder
+// * This class is responsible for mapping URLs vis HTTP status code to views not assigned in angular code
 // */
 //
 //@Configuration
