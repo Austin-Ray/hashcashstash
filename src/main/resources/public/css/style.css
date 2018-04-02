@@ -23,7 +23,15 @@ to prevent collapsing during animation*/
   height: 65px;
 }
 .ui-view-container {
+  padding: 50px 20px;
   position: relative;
+}
+.charts{
+  padding-top: 1300px;
+  position: relative;
+  align-content: left;
+  visibility: visible;
+
 }
 [ui-view].ng-enter,
 [ui-view].ng-leave {

@@ -69,6 +69,9 @@
             url:'/account',
             templateUrl: viewsPrefix + 'account.html',
             controller: 'CurrencyListController'
+        }).state('basic',{
+            url:'/basic',
+            templateUrl: viewsPrefix + 'basic.html'
         })
 	})
 	.directive('updateTitle', ['$rootScope', '$timeout',

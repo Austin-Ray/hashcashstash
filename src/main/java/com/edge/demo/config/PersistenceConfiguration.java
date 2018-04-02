@@ -1,16 +1,20 @@
 package com.edge.demo.config;
+
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
-import javax.activation.DataSource;
+import javax.sql.DataSource;
+
+//import javax.activation.DataSource;
 
 /**
  * Created by kelseyedge on 2/14/18.
  * This class manages the consistency and configuration of the database(s)
  */
+
 @Configuration
 public class PersistenceConfiguration {
     //config properties tells datasource builder to use the connection and properties located in the
@@ -23,12 +27,5 @@ public class PersistenceConfiguration {
     public DataSource dataSource(){
         return (DataSource) DataSourceBuilder.create().build();
     }
-
-//    @Bean
-//    @ConfigurationProperties(prefix = "datasource.flyway")
-//    @FlywayDataSource
-//    public DataSource flywayDataSource(){
-//        return (DataSource) DataSourceBuilder.create().build();
-//    }
 
 }

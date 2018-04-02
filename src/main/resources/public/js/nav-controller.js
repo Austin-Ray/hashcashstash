@@ -25,6 +25,10 @@ angular.module('navController', [])
             {
                 name: 'Account',
                 url: '#/account'
+            },
+			{
+                name: 'Graph',
+                url: '#/basic'
             }
 		]
 	});
