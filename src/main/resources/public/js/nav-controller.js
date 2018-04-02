@@ -15,7 +15,7 @@ angular.module('navController', [])
 				url: '#/'
 			},
 			{
-				name: 'Currencies',
+				name: 'Portfolio',
 				url: '#/currencys'
 			},
             {
@@ -29,6 +29,10 @@ angular.module('navController', [])
 			{
                 name: 'Graph',
                 url: '#/basic'
+            },
+            {
+                name: 'About Us',
+                url: '#/aboutUs'
             }
 		]
 	});

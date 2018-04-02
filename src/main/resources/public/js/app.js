@@ -72,6 +72,9 @@
         }).state('basic',{
             url:'/basic',
             templateUrl: viewsPrefix + 'basic.html'
+        }).state('aboutUs',{
+            url:'/aboutUs',
+            templateUrl: viewsPrefix + 'aboutUs.html'
         })
 	})
 	.directive('updateTitle', ['$rootScope', '$timeout',
