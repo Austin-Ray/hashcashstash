@@ -80,21 +80,12 @@ public class MvcConfig implements WebMvcConfigurer {
         return null;
     }
 
+    /**
+     * The method maps url paths to a view
+     * @param registry
+     */
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/home").setViewName("index.html");
-//        registry.addViewController("/").setViewName("home");
-//        registry.addViewController("/hello").setViewName("hello");
-//        registry.addViewController("/login").setViewName("login");
-//        registry.addViewController("/templates/faq").setViewName("faq");
-//        registry.addViewController("/templates/hello").setViewName("account");
-//        registry.addViewController("/templates/aboutUs").setViewName("aboutUs");
-//        registry.addViewController("/templates/currencies").setViewName("currencies");
-//        registry.addViewController("/views/registerUser").setViewName("registerUser");
-
-
-
-
-
     }
 
     @Override

@@ -25,7 +25,8 @@ public class CurrencyController {
         return currencyRepository.findAll();
     }
 
-    /*Will get the currency posted from browser, save it in repo, and show a copy
+    /*
+     * This method will grap the currency posted from browser, save it in repo, and show a copy
      */
     @RequestMapping(value = "currencys", method = RequestMethod.POST)
     public Currency create(@RequestBody Currency currency){
@@ -37,14 +38,17 @@ public class CurrencyController {
         return currencyRepository.findOne(id);
     }
 
-    //grab the currency with the incoming id from browser, find the existing one
-    //with that id in the database, and update, save, and return updated currency
+    /**
+     * Grab the currency with the incoming id from browser, find the existing one
+     * with that id in the database, and update, save, and return updated currency
+     */
     @RequestMapping(value = "currencys/{id}", method = RequestMethod.PUT)
     public Currency update(@PathVariable Long id, @RequestBody Currency currency){
         Currency existingCurrency = currencyRepository.findOne(id);
         BeanUtils.copyProperties(currency,existingCurrency);
         return currencyRepository.saveAndFlush(existingCurrency);
     }
+
 
     @RequestMapping(value = "currencys/{id}", method = RequestMethod.DELETE)
     public Currency delete(@PathVariable Long id){

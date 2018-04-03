@@ -11,9 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
     static ModelMap mm;
 
+    /**
+     * This method was created just as an example of how to crap the username from the
+     * web application. If you type localhost:8080/ into your browser when you are logged in
+     * and it should return a web page with your name on it.
+     * @param model
+     * @return
+     */
     @RequestMapping(value="/", method = RequestMethod.GET)
     public String printUser(ModelMap model) {
-
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName(); //get logged in username
         System.out.println(name);

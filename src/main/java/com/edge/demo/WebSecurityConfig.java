@@ -19,6 +19,12 @@ import java.util.Properties;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
+    /**
+     * This method Determines what views a user can see while before authentication (logged in),
+     * while authenticated, and can allow views to be hidden or viewed based on the user's role
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -35,6 +41,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(inMemoryUserDetailsManager()).passwordEncoder(passwordEncoder());
     }
 
+    /**
+     * This method creates the username(s), password(s), and role(s) for
+     * authentication.
+     * @return
+     */
     @Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
         final Properties users = new Properties();
@@ -48,10 +59,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         users.put("user", adminPassword+",ROLE_USER,enabled");
         //add whatever other user you need
 
-
-//add whatever other user you need
-
-        //add whatever other user you need
         return new InMemoryUserDetailsManager(users);
     }
 

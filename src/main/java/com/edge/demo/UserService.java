@@ -11,6 +11,11 @@ import java.util.Map;
 @Service("userService")
 public class UserService {
 
+    /**
+     * Where the app currently keeps all username, passwords, and roles
+     * @param username
+     * @return
+     */
     public Map<String, Object> getUserByUsername(String username) {
         Map<String, Object> userMap = null;
         //logic here to get your user from the database
