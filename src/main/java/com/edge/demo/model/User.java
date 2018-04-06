@@ -13,8 +13,6 @@ import javax.persistence.Id;
 @Entity  //Model for a user table in Spring JPA
 public class User {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
 	String first_name;
 	String last_name;

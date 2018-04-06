@@ -24,6 +24,7 @@ public class Credentials {
 	Long id;
 	String username;
 	String password;
+	User user;
 	
 	protected Credentials() {}
 	
@@ -55,4 +56,14 @@ public class Credentials {
 	public void set_password(String password) {
 		this.password = password;
 	}
+	
+	public User get_user() {
+		return this.user;
+	}
+	
+	public void set_user(User user) {
+		this.user = user;
+		this.user.set_id(this.id);
+	}
+	
 }
