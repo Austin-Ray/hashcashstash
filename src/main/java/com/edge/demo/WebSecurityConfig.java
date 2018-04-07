@@ -14,6 +14,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Properties;
 
 @Configuration
@@ -21,7 +25,7 @@ import java.util.Properties;
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-
+	
     /**
      * This method Determines what views a user can see while before authentication (logged in),
      * while authenticated, and can allow views to be hidden or viewed based on the user's role
@@ -57,19 +61,35 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	 * Pulling data from a text file to add users to the DB.
     	 */
     	
-    	File file = new File("/src/main/resources/db/users.txt");
+    	Connection connection = SqlConnect.connector();
+    	
+    	if (connection == null) {
+    		System.exit(0);
+    	}
+    	
+    	PreparedStatement ps = null;
+    	String query = "select * from credentials natural join user_roles";
     	
     	try {
-    		BufferedReader bf = new BufferedReader(new FileReader(file));
-    		String line = bf.readLine();
+    		ps = connection.prepareStatement(query);
+    		ResultSet result = ps.executeQuery();
     		
-    		while (line != null) {
-    			String [] line_split = line.trim().split("\t");
-    			users.put(line_split[0],passwordEncoder().encode(line_split[1])+","+line_split[2]);
-    			line = bf.readLine();
+    		while (result.next()) {
+    			String username = result.getString("username");
+    			String password = passwordEncoder().encode(result.getString("password"));
+    			String role = result.getString("role");
+    			users.put(username, password+",role_"+role+",enabled");
     		}
+    		
     	} catch (Exception e) {
-    		e.printStackTrace();
+    		System.out.println("Unable to execute query");
+    	} finally {
+    		try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     	}
     	
 //    	final Properties users = new Properties();
