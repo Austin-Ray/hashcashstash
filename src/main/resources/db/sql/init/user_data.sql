@@ -6,13 +6,13 @@ insert into credentials (username, password) values ("sam","admin");
 insert into credentials (username, password) values ("michael","admin");
 insert into credentials (username, password) values ("user","admin");
 
-insert into user values (1, "admin", "admin");
-insert into user values (2, "qubuni", "email");
-insert into user values (3, "kelsey", "edge");
-insert into user values (4, "austin", "ray");
-insert into user values (5, "sam", "pann");
-insert into user values (6, "michael", "suggs");
-insert into user values (7, "user", "test");
+insert into user (id,first_name,last_name) values (1, "admin", "admin");
+insert into user (id,first_name,last_name) values (2, "qubuni", "email");
+insert into user (id,first_name,last_name) values (3, "kelsey", "edge");
+insert into user (id,first_name,last_name) values (4, "austin", "ray");
+insert into user (id,first_name,last_name) values (5, "sam", "pann");
+insert into user (id,first_name,last_name) values (6, "michael", "suggs");
+insert into user (id,first_name,last_name) values (7, "user", "test");
 
 insert into user_roles values (1,"admin");
 insert into user_roles values (2,"user");

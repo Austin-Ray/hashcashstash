@@ -48,6 +48,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * This method creates the username(s), password(s), and role(s) for
      * authentication.
+     * 
+     * Edited by: spann303 on 4/7/2018
+     * Added implementation of non-volatile DB to store user info.
      * @return
      */
     @Bean
@@ -58,12 +61,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	 * Pulling data from a text file to add users to the DB.
     	 */
     	
+    	//Connects to the sqlite DB.
     	Connection connection = SqlConnect.connector();
     	
     	if (connection == null) {
     		System.exit(0);
     	}
     	
+    	//A query statement to receive data from the sqlite db.
     	PreparedStatement ps = null;
     	String query = "select * from credentials natural join user_roles";
     	
@@ -71,6 +76,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     		ps = connection.prepareStatement(query);
     		ResultSet result = ps.executeQuery();
     		
+    		//Iterates through the list of results from the query.
     		while (result.next()) {
     			String username = result.getString("username");
     			String password = passwordEncoder().encode(result.getString("password"));

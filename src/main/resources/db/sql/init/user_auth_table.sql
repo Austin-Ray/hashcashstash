@@ -16,6 +16,7 @@ create table user (
 	id integer,
 	first_name text not null,
 	last_name text not null,
+	email text,
 	foreign key (id) references credentials(id) on delete cascade 
 );
 

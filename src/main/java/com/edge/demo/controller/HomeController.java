@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.edge.demo.model.User;
+
 @RestController
 public class HomeController {
     static ModelMap mm;
@@ -21,7 +23,7 @@ public class HomeController {
     @RequestMapping(value="/", method = RequestMethod.GET)
     public String printUser(ModelMap model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName(); //get logged in username
+        String name = auth.toString(); //get logged in username
         System.out.println(name);
         mm = model;
         model.addAttribute("username", name);
