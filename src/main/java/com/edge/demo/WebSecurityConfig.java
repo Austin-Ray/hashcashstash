@@ -1,4 +1,10 @@
 package com.edge.demo;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Properties;
+
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,11 +17,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Properties;
+import com.edge.demo.controller.UserController;
+import com.edge.demo.model.User;
 
 @Configuration
 @EnableWebSecurity
@@ -70,18 +73,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	
     	//A query statement to receive data from the sqlite db.
     	PreparedStatement ps = null;
-    	String query = "select * from credentials natural join user_roles";
-    	
+    	String query = "select * from user";
     	try {
     		ps = connection.prepareStatement(query);
     		ResultSet result = ps.executeQuery();
     		
     		//Iterates through the list of results from the query.
     		while (result.next()) {
+    			String first_name = result.getString("first_name");
+    			String last_name = result.getString("last_name");
     			String username = result.getString("username");
     			String password = passwordEncoder().encode(result.getString("password"));
     			String role = result.getString("role");
-    			users.put(username, password+",role_"+role+",enabled");
+    			userController.add_user(new User(first_name,last_name,username,password,role));
     		}
     		
     	} catch (Exception e) {

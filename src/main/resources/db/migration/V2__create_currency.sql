@@ -1,4 +1,4 @@
-CREATE TABLE CURRENCY(
+CREATE TABLE CURRENCY (
 	id int AUTO_INCREMENT,
 	name VARCHAR(255),
 	symbol VARCHAR(255),
@@ -8,20 +8,12 @@ CREATE TABLE CURRENCY(
 	date_time VARCHAR(255)
 );
 
-CREATE TABLE CREDENTIALS(
-	id INT AUTO_INCREMENT, 
-	username VARCHAR(255),
-	password VARCHAR(255),
-	PRIMARY KEY (id),
-	UNIQUE (username)
-);
-
-CREATE TABLE USER(
-	id INT,
+CREATE TABLE USER (
+	id int AUTO_INCREMENT,
 	first_name VARCHAR(255),
-	last_name VARCHAR(255),
-	FOREIGN KEY (id) REFERENCES crendentials(id)
+	last_name text VARCHAR(255),
+	username text VARCHAR(255),
+	password text VARCHAR(255),
+	role VARCHAR(255),
+	PRIMARY KEY (id)
 );
-
-
-

@@ -1,23 +1,7 @@
-insert into credentials (username, password) values ("admin","admin");
-insert into credentials (username, password) values ("qubuni@qub.ac.uk","password");
-insert into credentials (username, password) values ("kelsey","admin");
-insert into credentials (username, password) values ("austin","admin");
-insert into credentials (username, password) values ("sam","admin");
-insert into credentials (username, password) values ("michael","admin");
-insert into credentials (username, password) values ("user","admin");
-
-insert into user (id,first_name,last_name) values (1, "admin", "admin");
-insert into user (id,first_name,last_name) values (2, "qubuni", "email");
-insert into user (id,first_name,last_name) values (3, "kelsey", "edge");
-insert into user (id,first_name,last_name) values (4, "austin", "ray");
-insert into user (id,first_name,last_name) values (5, "sam", "pann");
-insert into user (id,first_name,last_name) values (6, "michael", "suggs");
-insert into user (id,first_name,last_name) values (7, "user", "test");
-
-insert into user_roles values (1,"admin");
-insert into user_roles values (2,"user");
-insert into user_roles values (3,"admin");
-insert into user_roles values (4,"admin");
-insert into user_roles values (5,"admin");
-insert into user_roles values (6,"admin");
-insert into user_roles values (7,"user");
+insert into user (id,first_name,last_name,username,password,role) values (1,"admin","admin","admin", "admin","admin");
+insert into user (id,first_name,last_name,username,password,role) values (2, "a","b","qubuni","user","admin");
+insert into user (id,first_name,last_name,username,password,role) values (3, "kelsey", "edge","kelsey","admin","admin");
+insert into user (id,first_name,last_name,username,password,role) values (4, "austin", "ray","austin","admin","admin");
+insert into user (id,first_name,last_name,username,password,role) values (5, "sam", "pann","sam","admin","admin");
+insert into user (id,first_name,last_name,username,password,role) values (6, "michael", "suggs","michael","admin","admin");
+insert into user (id,first_name,last_name,username,password,role) values (7, "user", "test","user","admin","user");
