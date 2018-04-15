@@ -1,29 +1,32 @@
 package com.edge.demo.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GenerationType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * Created by spann303 on 4/7/2018
  * This class connects to the User model as part of a Spring JPA entity.
  */
 
 @Entity
-public class User {
+@Table (name="account")
+public class Account {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
+	Integer id;
 	String first_name;
 	String last_name;
 	String username;
 	String password;
 	String role;
 	
-	public User() { }
+	public Account() { }
 	
-	public User(String first_name, String last_name, String username, String password, String role) {
+	public Account(String first_name, String last_name, String username, String password, String role) {
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.username = username;
@@ -31,11 +34,11 @@ public class User {
 		this.role = role;
 	}
 	
-	public Long getId() {
+	public Integer getId() {
 		return this.id;
 	}
 	
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	

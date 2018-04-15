@@ -6,9 +6,9 @@
             <td><h3>Who Am I?</h3></td>
             <td></td>
         </tr>
-        <tr>
+        <tr ng-repeat="user in users">
             <td style="color:dodgerblue">User Name</td>
-			<td>User name goes here<td>
+			<td>{{user.first_name}}<td>
         </tr>
         <tr>
             <td style="color:dodgerblue">Email</td>

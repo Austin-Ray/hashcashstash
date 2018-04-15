@@ -41,8 +41,8 @@ angular.module('app.controllers', [])
   $scope.loadCurrency(); // Load a currency which can be edited on UI
 })
 
-.controller('UserViewController', function($scope) {
-	$scope.first_name = "Greatest";
+.controller('UserViewController', function($scope,$state, User) {
+	$scope.users = User.query();
 	$scope.last_name = "Ever";
 	$scope.email = "test@test.com";
 	$scope.password = "testpw";

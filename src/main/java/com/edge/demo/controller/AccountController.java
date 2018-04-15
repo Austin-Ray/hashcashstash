@@ -2,10 +2,11 @@ package com.edge.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.edge.demo.model.User;
-import com.edge.demo.repository.UserRepository;
+import com.edge.demo.model.Account;
+import com.edge.demo.repository.AccountRepository;
 
 
 /**
@@ -15,17 +16,22 @@ import com.edge.demo.repository.UserRepository;
 
 @RestController
 @RequestMapping("api/v1/")
-public class UserController {
+public class AccountController {
 	
 	@Autowired
-	private UserRepository userRepository;
+	private AccountRepository accountRepository;
 	
 	/**
 	 * Adds user to hibernate database.
 	 * (Temporary until database server established)
 	 * @param user
 	 */
-	public void add_user(User user) {
-		userRepository.saveAndFlush(user);
+	public void add_account(Account acc) {
+		accountRepository.save(acc);
+	}
+	
+	@RequestMapping(value = "account", method = RequestMethod.GET)
+	public Account list() {
+		return accountRepository.findOne(1);
 	}
 }
