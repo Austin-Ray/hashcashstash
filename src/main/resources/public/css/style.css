@@ -27,6 +27,7 @@ to prevent collapsing during animation*/
   position: relative;
 }
 .charts{
+  margin-top:1300px;
   padding-top: 1300px;
   position: relative;
   align-content: left;
