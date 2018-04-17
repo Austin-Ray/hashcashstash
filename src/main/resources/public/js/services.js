@@ -9,3 +9,7 @@ angular.module('app.services', []).factory('Currency', function($resource) {
         return $window.confirm(message);
     }
 });
+
+angular.module('app.services',[]).factory('Account', function($resource) {
+	return $resource('/api/v1/account');
+});

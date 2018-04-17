@@ -26,6 +26,10 @@ public class AccountLoader implements ApplicationListener<ContextRefreshedEvent>
 	public void setUserRepository(AccountRepository accountRepository) {
 		this.accountRepository = accountRepository;
 	}
+	
+	/**
+	 * Adds data from non-volatile database to h2 memory db.
+	 */
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
     	

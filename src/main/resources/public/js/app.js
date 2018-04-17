@@ -68,7 +68,7 @@
         }).state('account',{
             url:'/account',
             templateUrl: viewsPrefix + 'account.html',
-            controller: 'UserViewController'
+            controller: 'AccountInfoController'
         }).state('basic',{
             url:'/basic',
             templateUrl: viewsPrefix + 'basic.html'

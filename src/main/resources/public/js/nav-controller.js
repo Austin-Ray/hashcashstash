@@ -12,7 +12,7 @@ angular.module('navController', [])
 		$scope.pages = [
 			{
 				name: 'Home',
-				url: '#/'
+				url: '#'
 			},
 			{
 				name: 'Portfolio',

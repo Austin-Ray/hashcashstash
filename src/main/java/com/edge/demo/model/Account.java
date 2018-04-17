@@ -18,11 +18,11 @@ public class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Integer id;
-	String first_name;
-	String last_name;
-	String username;
-	String password;
-	String role;
+	private String first_name;
+	private String last_name;
+	private String username;
+	private String password;
+	private String role;
 	
 	public Account() { }
 	

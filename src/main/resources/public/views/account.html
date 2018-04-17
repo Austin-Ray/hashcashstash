@@ -6,18 +6,17 @@
             <td><h3>Who Am I?</h3></td>
             <td></td>
         </tr>
-        <tr ng-repeat="user in users">
-            <td style="color:dodgerblue">User Name</td>
-			<td>{{user.first_name}}<td>
-        </tr>
         <tr>
-            <td style="color:dodgerblue">Email</td>
+			<th style="color:dodgerblue">Name</th>
+			<td>{{ acc.firstName }} {{ acc.lastName }} <td>
+		</tr>
+		<tr>
+			<th style="color:dodgerblue">Email</th>
 			<td>Email goes here</td>
-        </tr>
-        <tr>
-            <td style="color:dodgerblue">Password</td>
+		</tr>
+		<tr>
+			<th style="color:dodgerblue">Password</th>
 			<td>Password goes here</td>
-        </tr>
-
+		</tr>
     </table>
 </div>

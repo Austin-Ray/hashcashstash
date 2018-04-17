@@ -2,7 +2,6 @@ angular.module('app.controllers', [])
 
 .controller('CurrencyListController', function($scope, $state, popupService, $window, Currency) {
   $scope.currencys = Currency.query(); //fetch all currencys. Issues a GET to /api/vi/currencys
-
   $scope.deleteCurrency = function(currency) { // Delete a Currency. Issues a DELETE to /api/v1/currencys/:id
     if (popupService.showPopup('Really delete this?')) {
         currency.$delete(function() {
@@ -41,9 +40,20 @@ angular.module('app.controllers', [])
   $scope.loadCurrency(); // Load a currency which can be edited on UI
 })
 
-.controller('UserViewController', function($scope,$state, User) {
-	$scope.users = User.query();
-	$scope.last_name = "Ever";
-	$scope.email = "test@test.com";
-	$scope.password = "testpw";
-});
+.controller('AccountInfoController', ['$scope', 'Account', function($scope, Account) {
+	$scope.acc = Account.get();
+//	$state.lastName = "";
+
+//	function getAccountInfo() {
+//		var url = $location.path("localhost:8080/api/v1/account");
+		
+//		$http.get(url).then(function (response) {
+//			$state.firstName = response.firstName;
+//			$state.lastName = response.lastName;
+//		}, function error(response) {
+//			$scope.error = "error";
+//		});
+//	}
+
+//	getAccountInfo();
+}]);
