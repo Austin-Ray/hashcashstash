@@ -9,7 +9,7 @@ import javax.persistence.Id;
  * This class connects the Currency model as a Spring JPA entity (which connects it to the database table)
  */
 
-@Entity
+@Entity //Model for a table in Spring JPA
 public class Currency {
 	//tells JPA that id is the auto-generated primary key
 	@Id
