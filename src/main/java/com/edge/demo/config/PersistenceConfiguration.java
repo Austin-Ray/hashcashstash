@@ -5,8 +5,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+
 import javax.sql.DataSource;
-//import javax.activation.DataSource;
 
 /**
  * Created by kelseyedge on 2/14/18.
@@ -23,7 +23,7 @@ public class PersistenceConfiguration {
     @ConfigurationProperties(prefix = "spring.datasource")
     @Primary
     public DataSource dataSource(){
-        return (DataSource) DataSourceBuilder.create().build();
+        return DataSourceBuilder.create().build();
     }
 
 }

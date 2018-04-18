@@ -1,6 +1,6 @@
 package com.edge.demo.controller;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,7 +20,7 @@ import com.edge.demo.repository.AccountRepository;
 @RequestMapping("api/v1/")
 public class AccountController {
 	
-	private Logger log = Logger.getLogger(AccountController.class);
+//	private Logger log = Logger.getLogger(AccountController.class);
 	
 	private AccountRepository accountRepository;
 	
@@ -31,7 +31,7 @@ public class AccountController {
 	
 	@RequestMapping(value = "account", method = RequestMethod.GET)
 	public Account getCurrentAccount () {
-		log.info("****************************** Request made to getUsername method ********************");
+//		log.info("****************************** Request made to getUsername method ********************");
 		//List<Account> list = accountRepository.findAll();
 		//return new ResponseEntity<List<Account>>(list, HttpStatus.OK);
 		Account current = null;

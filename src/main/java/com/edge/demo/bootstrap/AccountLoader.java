@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -20,7 +20,7 @@ public class AccountLoader implements ApplicationListener<ContextRefreshedEvent>
 
 	private AccountRepository accountRepository;
 	
-	private Logger log = Logger.getLogger(AccountLoader.class);
+//	private Logger log = Logger.getLogger(AccountLoader.class);
 	
 	@Autowired
 	public void setUserRepository(AccountRepository accountRepository) {
@@ -57,7 +57,7 @@ public class AccountLoader implements ApplicationListener<ContextRefreshedEvent>
     			Account acc = new Account(first_name,last_name,username,password,role);
     			accountRepository.save(acc);
     			
-    			log.info("Saved User -id: "+acc.getId());
+//    			log.info("Saved User -id: "+acc.getId());
     		}
     		
     	} catch (Exception e) {

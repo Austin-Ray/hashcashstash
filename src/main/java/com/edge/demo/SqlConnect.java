@@ -9,8 +9,7 @@ public class SqlConnect {
 		
 		try {
 			Class.forName("org.sqlite.JDBC");
-			Connection conn = DriverManager.getConnection("jdbc:sqlite:src/main/resources/db/sql/user_auth.sqlite");
-			return conn;
+			return DriverManager.getConnection("jdbc:sqlite:src/main/resources/db/sql/user_auth.sqlite");
 		} catch(Exception e) {
 			e.printStackTrace();
 			return null;
