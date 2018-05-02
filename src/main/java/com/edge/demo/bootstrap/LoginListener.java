@@ -9,13 +9,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoginListener implements ApplicationListener<ApplicationEvent> {
 
-	public static UserDetails userDetails = null;
-	
-	@Override
-	public void onApplicationEvent(ApplicationEvent appEvent) {
-		if (appEvent instanceof AuthenticationSuccessEvent) {
-			AuthenticationSuccessEvent event = (AuthenticationSuccessEvent) appEvent;
-			userDetails = (UserDetails) event.getAuthentication().getPrincipal();
-		}
-	}
+  public static UserDetails userDetails = null;
+
+  @Override
+  public void onApplicationEvent(ApplicationEvent appEvent) {
+    if (appEvent instanceof AuthenticationSuccessEvent) {
+      AuthenticationSuccessEvent event = (AuthenticationSuccessEvent) appEvent;
+      userDetails = (UserDetails) event.getAuthentication().getPrincipal();
+    }
+  }
 }

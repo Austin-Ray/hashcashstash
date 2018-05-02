@@ -1,18 +1,76 @@
-<div class="container pad-top">
-  <a ui-sref="newCurrency" class="btn-primary btn-lg nodecoration">Add New Currency</a>
-  <table class="table currencytable">
-      <tr>
-          <td><h3>All Currencies</h3></td>
-          <td></td>
-      </tr>
-      <tr ng-repeat="currency in currencys">
-          <td>{{currency.name}}</td>
-          <td>{{currency.symbol}}</td>
-          <td>{{currency.rank}}</td>
-          <td>
-              <a class="btn btn-primary" ui-sref="viewCurrency({id:currency.id})">View</a>
-              <a class="btn btn-danger"  ng-click="deleteCurrency(currency)">Delete</a>
-          </td>
-      </tr>
-  </table>
+<div class="card">
+    <div class="card-header">
+        Modify quantities
+    </div>
+    <div class="card-body">
+        <form data-ng-submit="submit()" style="margin: 0 auto;">
+            <div class="col-sm-5" style="display:inline-block">
+                <label for="sel1">Cryptocurrency</label>
+                <select id="sel1" class="form-control" ng-model="selectedAsset"
+                        ng-options="asset.name for asset in allAsset"></select>
+            </div>
+            <div class="col-sm-5" style="display:inline-block">
+                <label for="quant">Quantity</label>
+                <input type="text" class="form-control" id="quant" ng-model="selectedAsset.quant">
+            </div>
+            <div style="display:inline-block">
+                <button class="btn btn-primary" type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<hr/>
+
+<div class="card">
+    <div class="card-header">
+        Graph of Wealth
+    </div>
+    <div class="card-body">
+        <div data-ng-show="graph_loading"><h3>Loading...</h3></div>
+        <div class="linechart-container" style="position:relative; height: 20vh;">
+            <canvas id="linechart" class="chart" data-ng-init="loadGraphData1()" data-ng-show="!graph_loading"></canvas>
+        </div>
+    </div>
+</div>
+
+<hr/>
+
+<div class="card">
+    <div class="card-header">
+        Asset breakdown
+    </div>
+    <div class="card-body">
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Symbol</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Calculated Price (USD)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-show="loading">
+                <td colspan="5" align="center"><h3>Loading...</h3></td>
+            </tr>
+            <tr ng-repeat="quantObj in portList | filter:filterQuant()">
+                <td>{{quantObj.name}}</td>
+                <td>{{quantObj.symbol}}</td>
+                <td>{{quantObj.price | currency}}</td>
+                <td>{{quantObj.quant}}</td>
+                <td>{{quantObj.totalMoney | currency}}</td>
+            </tr>
+
+            <tr data-ng-show="!loading">
+                <td></td>
+                <td></td>
+                <td></td>
+                <th>Total:</th>
+                <td>{{total | currency}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

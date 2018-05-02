@@ -1,22 +1,39 @@
 package com.edge.demo;
 
 
+import latesco.core.Latesco;
+import latesco.core.connector.FrontendConnector;
+import latesco.db.abs.Database;
+
+import latesco.db.def.DefaultDatabase;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-/**
- * Created by kelseyedge on 2/14/18.
- * Controller to run the web application. Consider this the "main" method for the whole application
- */
+
+import java.sql.Connection;
+
+import static latesco.db.def.PostgresConnectionKt.getPostgresConnection;
 
 @SpringBootApplication
 @EnableAutoConfiguration
 @EnableJpaRepositories
-
 public class DemoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
-	}
+  public static FrontendConnector connector;
+  public static Connection conn;
+
+  public static void main(String[] args) {
+
+
+    conn = getPostgresConnection("host", "db", "user", "password");
+    Database db = new DefaultDatabase(conn);
+    Latesco latesco = new Latesco(db);
+
+    latesco.insertAsset("Bitcoin", "BTC");
+
+    connector = latesco.getConnector();
+
+    SpringApplication.run(DemoApplication.class, args);
+  }
 }

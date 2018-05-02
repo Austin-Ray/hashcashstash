@@ -1,49 +1,39 @@
-<!--Graph page from navigation bar. Dummy data in the tables right now. They will need to be wired to -->
-<!--whereever the stats will be calculated-->
-<head>
-    <Title>Stats</Title>
-</head>
-
-<div>
-    <p>Put Stats on this page: These are just examples.</p>
-        <table class="table supported">
+<h3 style="text-align:center">Cryptocurrencies Supported</h3>
+<div class="card box-shadow">
+    <div class="card-header">
+        Price and Last Update
+    </div>
+    <div class="card-body">
+        <div data-ng-show="graph_loading"><h3>Loading...</h3></div>
+        <div style="position: relative; height: 40vh;">
+            <canvas id="linechart" data-ng-show="!graph_loading"></canvas>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 1em;">
+            <button style="margin-left:1em;" ng-repeat="asset in assetList" ng-click="doAlert(asset.assetUid)"
+                    class="btn" ng-value="asset.assetUid" ng-model="selectedButton"
+                    ng-class="{'btn-primary':selectedButton==asset.assetUid}">{{asset.name}}</button>
+        </div>
+        <table class="table table-hover table-striped">
+            <thead>
             <tr>
-                <td><h3>Cryptocurrencies Supported</h3></td>
-                <td></td>
+                <th>Name</th>
+                <th>Symbol</th>
+                <th>Price (USD)</th>
+                <th>Last Updated</th>
             </tr>
-            <tr>
-                <th style="color:cadetblue">Bitcoin</th>
-                <td style="color:cadetblue">Symbol: BTC</td>
-                <td style="color:cadetblue">Standard Deviation: Enter number</td>
-                <td style="color:cadetblue">Last Updated: Now</td>
+            </thead>
+            <tbody>
+            <tr data-ng-show="list_loading">
+                <td colspan="4"><h3>Loading...</h3></td>
             </tr>
-            <tr>
-                <th style="color:deepskyblue">Ripple</th>
-                <td style="color:deepskyblue">Symbol: XRP</td>
-                <td style="color:deepskyblue">Standard Deviation: Enter number</td>
-                <td style="color:deepskyblue">Last Updated: Now</td>
+            <tr data-ng-show="!list_loading" ng-repeat="asset in assetList">
+                <td>{{ asset.name }}</td>
+                <td>{{ asset.symbol }}</td>
+                <td>{{ asset.price | currency}}</td>
+                <td>{{ asset.date }}</td>
             </tr>
-            <tr>
-                <th style="color:darkslateblue">Ethereum</th>
-                <td style="color:darkslateblue">Symbol: ETH</td>
-                <td style="color:darkslateblue">Standard Deviation: Enter number</td>
-                <td style="color:darkslateblue">Last Updated: Now</td>
-            </tr>
-            <tr>
-                <th style="color:steelblue">Bicoin Cash</th>
-                <td style="color:steelblue">Symbol: BCC</td>
-                <td style="color:steelblue">Standard Deviation: Enter number</td>
-                <td style="color:steelblue">Last Updated: Now</td>
-            </tr>
-            <tr>
-                <th style="color:cadetblue">Litecoin </th>
-                <td style="color:cadetblue">Symbol: LTC</td>
-                <td style="color:cadetblue">Standard Deviation: Enter number</td>
-                <td style="color:cadetblue">Last Updated: Now</td>
-            </tr>
-            <tr>
-                <td>See Chart below</td>
-            </tr>
+            </tbody>
         </table>
-
+    </div>
 </div>
+
