@@ -140,9 +140,11 @@ angular.module('app.controllers', [])
                 method: 'POST',
                 url: 'api/v1/port/modquant',
                 data: data
-            });
-            $scope.refreshPageData();
-            $root.refreshView();
+            }).finally(function() {
+                  $scope.refreshPageData();
+                  $root.refreshView();
+                }
+            );
         };
 
         $scope.delCurr = function(uid) {
@@ -156,9 +158,10 @@ angular.module('app.controllers', [])
                 method: 'POST',
                 url: 'api/v1/port/modquant',
                 data: data
+            }).finally(function() {
+                $scope.refreshPageData();
+                $root.refreshView();
             });
-            $scope.refreshPageData();
-            $root.refreshView();
         };
 
 
