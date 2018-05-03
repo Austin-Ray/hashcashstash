@@ -7,19 +7,16 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import com.edge.demo.SqlConnect;
 import com.edge.demo.model.Account;
 import com.edge.demo.repository.AccountRepository;
 
-/**
- * Not sure this class does anything. May need to remove.
- *
- * @author mjonir
- */
 @Component
-public class AccountLoader {
+public class AccountLoader implements ApplicationRunner {
 
   private AccountRepository accountRepository;
 
@@ -34,7 +31,7 @@ public class AccountLoader {
    * Adds data from non-volatile database to h2 memory db.
    */
 
-  public void onApplicationEvent() {
+  public void run(ApplicationArguments args) {
     //Connects to the sqlite DB.
     Connection connection = SqlConnect.connector();
 
@@ -52,12 +49,14 @@ public class AccountLoader {
 
       //Iterates through the list of results from the query.
       while (result.next()) {
+        int id = result.getInt("id");
         String first_name = result.getString("firstName");
         String last_name = result.getString("lastName");
         String username = result.getString("username");
         String password = result.getString("password");
         String role = result.getString("role");
         Account acc = new Account(first_name, last_name, username, password, role);
+        acc.setId(id);
         accountRepository.save(acc);
 
         log.info("Saved User -id: " + acc.getId());

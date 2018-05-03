@@ -28,7 +28,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   static public InMemoryUserDetailsManager inMemoryUserDetailsManager;
-  private AccountRepository accountRepository;
+  //private AccountRepository accountRepository;
   private Logger log = Logger.getLogger(AccountController.class);
 
   /**
@@ -72,10 +72,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
     WebSecurityConfig.inMemoryUserDetailsManager = this.inMemoryUserDetailsManagerInit();
     auth.userDetailsService(WebSecurityConfig.inMemoryUserDetailsManager).passwordEncoder(passwordEncoder());
-
-    AccountLoader accountLoader = new AccountLoader();
-    accountLoader.setUserRepository(accountRepository);
-    accountLoader.onApplicationEvent();
   }
 
   /**

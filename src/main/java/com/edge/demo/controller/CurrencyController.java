@@ -52,15 +52,6 @@ public class CurrencyController {
 
     // Pretty nasty SQL statement.
     String sql = "SELECT ret_time, asset_uid, price FROM price WHERE asset_uid = ?;";
-//        "SELECT lts, p.asset_uid, p.price " +
-//        "FROM (" +
-//            "SELECT MAX(ret_time) as lts, asset_uid " +
-//            "FROM price WHERE api_uid = 14 " +
-//            "GROUP BY date(ret_time), asset_uid " +
-//            "ORDER BY lts DESC" +
-//        ") as q " +
-//        "JOIN price as p " +
-//        "ON q.lts = p.ret_time AND q.asset_uid = p.asset_uid;";
     List<DataSetEntry> data = new ArrayList<>();
 
     PreparedStatement statement;

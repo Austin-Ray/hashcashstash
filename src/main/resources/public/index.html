@@ -48,9 +48,9 @@
 
 <body>
 <div class="content">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fix-top" ng-controller="nav">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fix-top font-weight-normal" ng-controller="nav">
         <div class="container">
-            <a class="navbar-brand" href="#">HashCash Stash</a>
+            <a class="navbar-brand font-weight-bold" href="#">HashCash Stash</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -75,14 +75,17 @@
                     <li ng-repeat="page in pages" class="nav-item" ng-class="{'active' : isUrl(page.url)}"
                         ng-include="'nav-item.html'"></li>
                 </ul>
+                <a href="/logout"><button class="btn btn-danger">Logout</button></a>
             </div>
         </div>
     </nav>
 
 
     <div class="ui-view-container">
-        <div ui-view style="height:unset" class="container">
-            <!-- default content can go here but there will be a flicker on some pages loading -->
+        <div class="container" style="padding: 0px;">
+            <div ui-view style="height:unset" class="container">
+                <!-- default content can go here but there will be a flicker on some pages loading -->
+            </div>
         </div>
     </div>
 </div>

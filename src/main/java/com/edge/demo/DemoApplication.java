@@ -26,7 +26,7 @@ public class DemoApplication {
   public static void main(String[] args) {
 
 
-    conn = getPostgresConnection("host", "db", "user", "password");
+    conn = getPostgresConnection("aether.austinray.io", "aray", "aray", "thisIsAPassword");
     Database db = new DefaultDatabase(conn);
     Latesco latesco = new Latesco(db);
 

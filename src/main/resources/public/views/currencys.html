@@ -29,7 +29,7 @@
     <div class="card-body">
         <div data-ng-show="graph_loading"><h3>Loading...</h3></div>
         <div class="linechart-container" style="position:relative; height: 20vh;">
-            <canvas id="linechart" class="chart" data-ng-init="loadGraphData1()" data-ng-show="!graph_loading"></canvas>
+            <canvas id="linechart" class="chart" data-ng-init="" data-ng-show="!graph_loading"></canvas>
         </div>
     </div>
 </div>
@@ -49,11 +49,12 @@
                 <th>Unit Price</th>
                 <th>Quantity</th>
                 <th>Calculated Price (USD)</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
             <tr data-ng-show="loading">
-                <td colspan="5" align="center"><h3>Loading...</h3></td>
+                <td colspan="6" align="center"><h3>Loading...</h3></td>
             </tr>
             <tr ng-repeat="quantObj in portList | filter:filterQuant()">
                 <td>{{quantObj.name}}</td>
@@ -61,6 +62,7 @@
                 <td>{{quantObj.price | currency}}</td>
                 <td>{{quantObj.quant}}</td>
                 <td>{{quantObj.totalMoney | currency}}</td>
+                <td><button ng-click="delCurr(quantObj.uid)" class="btn btn-danger">Delete</button></td>
             </tr>
 
             <tr data-ng-show="!loading">
@@ -69,6 +71,7 @@
                 <td></td>
                 <th>Total:</th>
                 <td>{{total | currency}}</td>
+                <td></td>
             </tr>
             </tbody>
         </table>

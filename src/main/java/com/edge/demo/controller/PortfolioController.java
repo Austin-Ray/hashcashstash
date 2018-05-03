@@ -1,11 +1,15 @@
 package com.edge.demo.controller;
 
 import com.edge.demo.DemoApplication;
+import com.edge.demo.bootstrap.LoginListener;
+import com.edge.demo.model.Account;
 import com.edge.demo.model.PriceAsset;
 import com.edge.demo.model.UserQuant;
+import com.edge.demo.repository.AccountRepository;
 import latesco.core.connector.FrontendConnector;
 import latesco.core.data.Asset;
 import latesco.core.data.PriceRecord;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,7 +43,8 @@ public class PortfolioController {
     loadAsset();
     List<PriceAsset> pa = new ArrayList<>();
     List<UserQuant> userQuant = new ArrayList<>();
-    List<Integer> assets = connector.getAllUsersAssets(1);
+    Account curr = getCurrentAccount();
+    List<Integer> assets = connector.getAllUsersAssets(curr.getId());
 
     for (Integer integer : assets) {
       PriceRecord price = connector.getCurrentPrice(integer, 14);
@@ -48,7 +53,7 @@ public class PortfolioController {
     }
 
     for (PriceAsset pas : pa) {
-      BigDecimal quant = connector.getUserQuant(1, pas.assetUid);
+      BigDecimal quant = connector.getUserQuant(curr.getId(), pas.assetUid);
       userQuant.add(new UserQuant(pas, quant));
     }
 
@@ -58,11 +63,12 @@ public class PortfolioController {
   @RequestMapping(value = "/total", method = RequestMethod.GET)
   public BigDecimal totalWorth() {
     BigDecimal total = new BigDecimal(0.0);
-    List<Integer> assets = connector.getAllUsersAssets(1);
+    Account curr = getCurrentAccount();
+    List<Integer> assets = connector.getAllUsersAssets(curr.getId());
 
     for (Integer asset : assets) {
       PriceRecord price = connector.getCurrentPrice(asset, 14);
-      BigDecimal quant = connector.getUserQuant(1, asset);
+      BigDecimal quant = connector.getUserQuant(curr.getId(), asset);
       total = total.add(quant.multiply(price.getPrice()));
     }
 
@@ -73,11 +79,12 @@ public class PortfolioController {
   public List<UserQuant> allList() {
     List<Asset> asset = connector.getLatesco().getAssets();
     List<UserQuant> userQuant = new ArrayList<>();
+    Account curr = getCurrentAccount();
 
     for (Asset asset1 : asset) {
       BigDecimal quant;
       try {
-        quant = connector.getUserQuant(1, asset1.getUid());
+        quant = connector.getUserQuant(curr.getId(), asset1.getUid());
       } catch (Exception e) {
         quant = new BigDecimal(0);
       }
@@ -93,14 +100,16 @@ public class PortfolioController {
 
   @RequestMapping(value = "/modquant", method = RequestMethod.POST)
   public String addEntry(@RequestBody UserQuant quant) {
-    connector.setUserQuant(1, quant.uid, quant.quant);
+    Account curr = getCurrentAccount();
+    connector.setUserQuant(curr.getId(), quant.uid, quant.quant);
     return "works";
   }
 
-  @RequestMapping(value = "wealth_hist", method = RequestMethod.GET)
+  @RequestMapping(value = "/wealth_hist", method = RequestMethod.GET)
   public List<WealthEntry> getWealth() {
     List<WealthEntry> entries = new ArrayList<>();
     WealthEntry entry = new WealthEntry();
+    Account curr = getCurrentAccount();
 
     // This SQL statements is a monster, but time is short.
     String sql =
@@ -108,7 +117,7 @@ public class PortfolioController {
             "FROM (" +
             "SELECT asset_uid, MAX(ins_time) as lts " +
             "FROM users " +
-            "WHERE user_uid = 1 " +
+            "WHERE user_uid = " + curr.getId() + " " +
             "GROUP BY date(ins_time), asset_uid " +
             "ORDER BY lts DESC" +
             ") as q " +
@@ -166,6 +175,27 @@ public class PortfolioController {
     entries.add(entry);
 
     return entries;
+  }
+
+  @Autowired
+  private AccountRepository accountRepository;
+
+  @Autowired
+  public void setAccountRepository(AccountRepository accountRepository) {
+    this.accountRepository = accountRepository;
+  }
+
+  public Account getCurrentAccount() {
+    //List<Account> list = accountRepository.findAll();
+    //return new ResponseEntity<List<Account>>(list, HttpStatus.OK);
+    Account current = null;
+    for (Account acc : accountRepository.findAll()) {
+      if (acc.getUsername().equals(LoginListener.userDetails.getUsername())) {
+        current = acc;
+      }
+    }
+
+    return current;
   }
 }
 

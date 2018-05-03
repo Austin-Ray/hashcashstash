@@ -109,6 +109,7 @@ angular.module('app.controllers', [])
             }).then(function successCallback(response) {
                 $scope.total = response.data;
                 $scope.loading = false;
+                $scope.loadGraphData1();
             }, function errorCallback(response) {
                 console.log(response.statusText)
             });
@@ -128,8 +129,6 @@ angular.module('app.controllers', [])
             }, function errorCallback(response) {
                 console.log(response.statusText)
             });
-
-            $scope.loadGraphData1();
         };
         $scope.submit = function submit() {
             var data = {
@@ -145,6 +144,24 @@ angular.module('app.controllers', [])
             $scope.refreshPageData();
             $root.refreshView();
         };
+
+        $scope.delCurr = function(uid) {
+            console.log(uid);
+            var data = {
+                quant: 0.0,
+                uid: uid
+            };
+
+            $http({
+                method: 'POST',
+                url: 'api/v1/port/modquant',
+                data: data
+            });
+            $scope.refreshPageData();
+            $root.refreshView();
+        };
+
+
         $scope.filterQuant = function () {
             return function (item) {
                 return !(item.quant === 0);
@@ -159,10 +176,17 @@ angular.module('app.controllers', [])
                 $scope.loadGraph1();
             })
         };
+
         $scope.loadGraph1 = function () {
             $scope.graph_loading = false;
+            var canvas = document.getElementById("linechart");
             var ctx = document.getElementById("linechart").getContext("2d");
-            var linechart =
+
+            if ($scope.linechart != null) {
+                $scope.linechart.destroy();
+            }
+
+            $scope.linechart =
                 new Chart(ctx, {
                     type: 'line',
                     data: {
